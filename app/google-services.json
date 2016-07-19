@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1027805846191",
+    "firebase_url": "https://fillur-371d6.firebaseio.com",
+    "project_id": "fillur-371d6",
+    "storage_bucket": "fillur-371d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027805846191:android:1b0edc80bbc5f50b",
+        "android_client_info": {
+          "package_name": "com.epicodus.guest.fillur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027805846191-vovb36qo0s5ipimj72d0q3o01bdeua55.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.guest.fillur",
+            "certificate_hash": "85FE894F50EC6C073CCC421B8D7B221A959AF583"
+          }
+        },
+        {
+          "client_id": "1027805846191-jdtbt8abb56604ui7r0k42q57lgsv74e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7wEhlE3--Ocu2d7UKZ39bDhtFQzvP7yA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027805846191-jdtbt8abb56604ui7r0k42q57lgsv74e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
