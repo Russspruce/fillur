@@ -14,25 +14,28 @@ public class Recipe {
     public String id;
     public String publisher;
     public String sourceUrl;
+    public String rank;
 
 
 
     public ArrayList<String> ingredients;
 
-    public Recipe(String title, String imageUrl, String id, String publisher) {
+    public Recipe(String title, String imageUrl, String id, String publisher, String rank){
         this.title = title;
         this.imageUrl = imageUrl;
         this.id = id;
         this.publisher = publisher;
+        this.rank = rank;
     }
 
-    public Recipe(String title, String imageUrl, String id, String publisher, String sourceUrl, ArrayList<String> ingredients) {
+    public Recipe(String title, String imageUrl, String id, String publisher, String sourceUrl, ArrayList<String> ingredients, String rank) {
         this.title = title;
         this.imageUrl = imageUrl;
         this.id = id;
         this.publisher = publisher;
         this.sourceUrl = sourceUrl;
         this.ingredients = ingredients;
+        this.rank = rank;
     }
 
     public String getTitle() {
@@ -49,6 +52,9 @@ public class Recipe {
 
     public String getPublisher() {
         return publisher;
+    }
+    public String getRank() {
+        return rank;
     }
 
 }

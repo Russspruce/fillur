@@ -3,6 +3,9 @@ package com.epicodus.guest.fillur.services;
 /**
  * Created by Guest on 7/19/16.
  */
+import android.text.Html;
+import android.util.Log;
+
 import com.epicodus.guest.fillur.Constants;
 import com.epicodus.guest.fillur.models.Recipe;
 
@@ -22,7 +25,8 @@ import okhttp3.Response;
 
 
 public class Food2ForkService {
-    public static void findRecipies(String ingredients, Callback callback){
+
+    public static void findRecipes(String ingredients, Callback callback){
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
 
@@ -42,7 +46,7 @@ public class Food2ForkService {
     }
 
 
-    public static void getRecipie(String rId, Callback callback){
+    public static void getRecipe(String rId, Callback callback){
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
 
@@ -63,6 +67,7 @@ public class Food2ForkService {
 
     public ArrayList<Recipe> processRecipes(Response response) {
         ArrayList<Recipe> recipes = new ArrayList<>();
+
         try {
             String jsonData = response.body().string();
             if (response.isSuccessful()) {
@@ -74,8 +79,9 @@ public class Food2ForkService {
                     String imageUrl = recipeJSON.getString("image_url");
                     String id = recipeJSON.getString("recipe_id");
                     String publisher = recipeJSON.getString("publisher");
+                    String rank = recipeJSON.getString("social_rank");
 
-                    Recipe recipe = new Recipe(title, imageUrl, id, publisher);
+                    Recipe recipe = new Recipe(title, imageUrl, id, publisher, rank);
 
                     recipes.add(recipe);
                 }
@@ -88,8 +94,8 @@ public class Food2ForkService {
         return recipes;
     }
 
-    public ArrayList<Recipe> processRecipe(Response response) {
-        ArrayList<Recipe> recipes = new ArrayList<>();
+    public Recipe processRecipe(Response response) {
+        Recipe recipe = null;
         try {
             String jsonData = response.body().string();
             if (response.isSuccessful()) {
@@ -102,14 +108,15 @@ public class Food2ForkService {
                     String id = recipeJSON.getString("recipe_id");
                     String publisher = recipeJSON.getString("publisher");
                     String sourceUrl = recipeJSON.getString("source_url");
+                    String rank = recipeJSON.getString("social_rank");
+
                     JSONArray ingredientsJSON = recipeJSON.getJSONArray("ingredients");
                     ArrayList<String> ingredients = new ArrayList();
                     for(int x = 0; x < ingredientsJSON.length(); x++){
                         ingredients.add(ingredientsJSON.get(x).toString());
                     }
-                    Recipe recipe = new Recipe(title, imageUrl, id, publisher, sourceUrl, ingredients);
+                    recipe = new Recipe(title, imageUrl, id, publisher, sourceUrl, ingredients, rank);
 
-                    recipes.add(recipe);
                 }
             }
         } catch (IOException e) {
@@ -117,7 +124,7 @@ public class Food2ForkService {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return recipes;
+        return recipe;
     }
 
 

@@ -12,7 +12,9 @@ public class Constants {
     public static final String QUERY_PARAMETER = "q";
     public static final String RID_PARAMETER = "rId";
     public static final String SORT_PARAMETER = "sort";
-    public static final String SORT_VALUE = "t";
+    public static final String SORT_VALUE = "r";
+    public static final String LAST_SEARCH = "lastSearch";
+
 
 
 
