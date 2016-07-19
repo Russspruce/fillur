@@ -88,5 +88,37 @@ public class Food2ForkService {
         return recipes;
     }
 
+    public ArrayList<Recipe> processRecipe(Response response) {
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        try {
+            String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject recipeResponseJSON = new JSONObject(jsonData);
+                JSONArray recipesJSON = recipeResponseJSON.getJSONArray("recipes");
+                for (int i = 0; i < recipesJSON.length(); i++) {
+                    JSONObject recipeJSON = recipesJSON.getJSONObject(i);
+                    String title = recipeJSON.getString("title");
+                    String imageUrl = recipeJSON.getString("image_url");
+                    String id = recipeJSON.getString("recipe_id");
+                    String publisher = recipeJSON.getString("publisher");
+                    String sourceUrl = recipeJSON.getString("source_url");
+                    JSONArray ingredientsJSON = recipeJSON.getJSONArray("ingredients");
+                    ArrayList<String> ingredients = new ArrayList();
+                    for(int x = 0; x < ingredientsJSON.length(); x++){
+                        ingredients.add(ingredientsJSON.get(x).toString());
+                    }
+                    Recipe recipe = new Recipe(title, imageUrl, id, publisher, sourceUrl, ingredients);
+
+                    recipes.add(recipe);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return recipes;
+    }
+
 
 }
