@@ -33,6 +33,7 @@ android {
         it.buildConfigField 'String', 'ApiKey', ApiKey
     }
 }
+apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -48,5 +49,7 @@ dependencies {
     compile 'com.google.firebase:firebase-database:9.0.2'
     compile 'com.google.firebase:firebase-auth:9.0.2'
     compile 'com.google.code.gson:gson:2.7'
+    compile 'org.parceler:parceler-api:1.1.1'
+    apt 'org.parceler:parceler:1.1.1'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -14,6 +14,9 @@ public class Constants {
     public static final String SORT_PARAMETER = "sort";
     public static final String SORT_VALUE = "r";
     public static final String LAST_SEARCH = "lastSearch";
+    public static final String FIREBASE_CHILD_RECIPES = "recipes";
+    public static final String FIREBASE_QUERY_INDEX = "index";
+
 
 
 

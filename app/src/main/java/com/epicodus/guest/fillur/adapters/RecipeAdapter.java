@@ -2,6 +2,7 @@ package com.epicodus.guest.fillur.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcel;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.epicodus.guest.fillur.models.Recipe;
 import com.epicodus.guest.fillur.ui.RecipeDetailActivity;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -75,7 +78,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(v.getContext(), RecipeDetailActivity.class);
-            intent.putExtra("id", mRecipes.get(itemPosition).getId());
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("recipes", Parcels.wrap(mRecipes));
             mContext.startActivity(intent);
         }
     }

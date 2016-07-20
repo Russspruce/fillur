@@ -1,15 +1,19 @@
 package com.epicodus.guest.fillur.adapters;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.epicodus.guest.fillur.models.Recipe;
 import com.epicodus.guest.fillur.services.Food2ForkService;
 import com.epicodus.guest.fillur.ui.RecipeDetailActivity;
 import com.epicodus.guest.fillur.ui.RecipeDetailFragment;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,18 +28,16 @@ import okhttp3.Response;
 public class RecipePagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Recipe> mRecipes;
     private Context mContext;
+    private Recipe mRecipe;
 
-    public RecipePagerAdapter(FragmentManager fm, ArrayList<Recipe> restaurants, Context context) {
+    public RecipePagerAdapter(FragmentManager fm, ArrayList<Recipe> restaurants) {
         super(fm);
         mRecipes = restaurants;
-        mContext = context;
     }
 
     @Override
     public Fragment getItem(int position) {
-        Gson gson = new Gson();
-        String json = gson.toJson(mRecipes.get(position));
-        return RecipeDetailFragment.newInstance(json);
+        return RecipeDetailFragment.newInstance(mRecipes.get(position));
     }
 
     @Override
@@ -47,4 +49,5 @@ public class RecipePagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return mRecipes.get(position).getTitle();
     }
+
 }

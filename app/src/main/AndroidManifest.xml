@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.SearchActivity" />
-        <activity android:name=".ui.RecipeDetailActivity"></activity>
+        <activity android:name=".ui.RecipeDetailActivity" />
+        <activity android:name=".ui.SavedRecipeActivity"></activity>
     </application>
 
 </manifest>

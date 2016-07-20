@@ -1,10 +1,13 @@
 package com.epicodus.guest.fillur.models;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
 /**
  * Created by Guest on 7/19/16.
  */
+@Parcel
 public class Recipe {
 
 
@@ -16,6 +19,8 @@ public class Recipe {
     public String sourceUrl;
     public String rank;
     public ArrayList<String> ingredients;
+
+    public Recipe() {}
 
     public Recipe(String title, String imageUrl, String id, String publisher, String rank){
         this.title = title;
