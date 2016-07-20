@@ -61,6 +61,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindRecipe(Recipe recipe) {
@@ -73,11 +74,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
-            Gson gson = new Gson();
-            String recipeJSON = gson.toJson(mRecipes);
             Intent intent = new Intent(v.getContext(), RecipeDetailActivity.class);
-            intent.putExtra("recipes", recipeJSON);
-            intent.putExtra("position", itemPosition);
+            intent.putExtra("id", mRecipes.get(itemPosition).getId());
             mContext.startActivity(intent);
         }
     }
