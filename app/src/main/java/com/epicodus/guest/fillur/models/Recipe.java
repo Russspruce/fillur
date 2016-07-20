@@ -15,9 +15,6 @@ public class Recipe {
     public String publisher;
     public String sourceUrl;
     public String rank;
-
-
-
     public ArrayList<String> ingredients;
 
     public Recipe(String title, String imageUrl, String id, String publisher, String rank){
@@ -55,6 +52,13 @@ public class Recipe {
     }
     public String getRank() {
         return rank;
+    }
+    public ArrayList<String> getIngredients() {
+        return ingredients;
+    }
+
+    public String getSourceUrl() {
+        return sourceUrl;
     }
 
 }

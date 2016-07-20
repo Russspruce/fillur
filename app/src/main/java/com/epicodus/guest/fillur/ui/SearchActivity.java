@@ -71,8 +71,7 @@ public class SearchActivity extends AppCompatActivity {
                     public void run() {
                         mAdapter = new RecipeAdapter(getApplicationContext(), mRecipes);
                         mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(SearchActivity.this);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                     }

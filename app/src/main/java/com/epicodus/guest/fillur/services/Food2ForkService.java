@@ -98,11 +98,10 @@ public class Food2ForkService {
         Recipe recipe = null;
         try {
             String jsonData = response.body().string();
+            Log.d("processRecipe: ", jsonData);
             if (response.isSuccessful()) {
                 JSONObject recipeResponseJSON = new JSONObject(jsonData);
-                JSONArray recipesJSON = recipeResponseJSON.getJSONArray("recipes");
-                for (int i = 0; i < recipesJSON.length(); i++) {
-                    JSONObject recipeJSON = recipesJSON.getJSONObject(i);
+                JSONObject recipeJSON = recipeResponseJSON.getJSONObject("recipe");
                     String title = recipeJSON.getString("title");
                     String imageUrl = recipeJSON.getString("image_url");
                     String id = recipeJSON.getString("recipe_id");
@@ -118,7 +117,6 @@ public class Food2ForkService {
                     recipe = new Recipe(title, imageUrl, id, publisher, sourceUrl, ingredients, rank);
 
                 }
-            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
