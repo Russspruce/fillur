@@ -47,7 +47,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     }
 
-    private void getRecipe() {
+    private void getRecipe() { //Move to RecipeListActivity?
         final Food2ForkService food2forkservice = new Food2ForkService();
         food2forkservice.getRecipe(mId, new Callback() {
             @Override
