@@ -23,6 +23,8 @@ import com.epicodus.guest.fillur.adapters.RecipeAdapter;
 import com.epicodus.guest.fillur.models.Recipe;
 import com.epicodus.guest.fillur.services.Food2ForkService;
 
+import org.parceler.Parcels;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -44,10 +46,8 @@ public class SearchFragment extends Fragment {
     private SharedPreferences.Editor mEditor;
     private String mRecentSearch;
 
+    public String mIngredients;
 
-    public SearchFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,6 @@ public class SearchFragment extends Fragment {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mEditor = mSharedPreferences.edit();
 
-        // Instructs fragment to include menu options:
         setHasOptionsMenu(true);
     }
 

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mSearch.setOnClickListener(this);
         mSave.setOnClickListener(this);
+        mSelect.setOnClickListener(this);
 
     }
 
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (v == mSave) {
             Intent intent = new Intent(MainActivity.this, SavedRecipeActivity.class);
+            startActivity(intent);
+        }
+        if (v == mSelect) {
+            Intent intent = new Intent(MainActivity.this, IngredientListActivity.class);
             startActivity(intent);
         }
     }

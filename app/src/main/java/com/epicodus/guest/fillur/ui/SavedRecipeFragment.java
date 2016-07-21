@@ -60,16 +60,11 @@ public class SavedRecipeFragment extends Fragment implements OnStartDragListener
                 .getReference(Constants.FIREBASE_CHILD_RECIPES)
                 .child(uid)
                 .orderByChild(Constants.FIREBASE_QUERY_INDEX);
-
-        //  In line below, we change 6th parameter 'this' to 'getActivity()'
-        //  because fragments do not have own context:
         mFirebaseAdapter = new FirebaseRecipeListAdapter(Recipe.class,
                 R.layout.recipe_list_item_drag, FirebaseRecipeViewHolder.class,
                 query, this, getActivity());
 
         mRecyclerView.setHasFixedSize(true);
-
-        //In line below, we change 'this' to 'getActivity()' because fragments do not have own context:
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mFirebaseAdapter);
 

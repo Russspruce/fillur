@@ -10,8 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
-            android:theme="@style/NoActionBarTheme">
-        </activity>
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".ui.SearchActivity" />
         <activity android:name=".ui.RecipeDetailActivity" />
         <activity android:name=".ui.SavedRecipeActivity" />
@@ -19,9 +18,12 @@
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.IngredientListActivity" />
+        <activity android:name=".ui.RecipeListActivity"></activity>
     </application>
 
 </manifest>

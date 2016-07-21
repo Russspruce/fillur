@@ -1,7 +1,9 @@
 package com.epicodus.guest.fillur.adapters;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.epicodus.guest.fillur.R;
 import com.epicodus.guest.fillur.models.Recipe;
+import com.epicodus.guest.fillur.ui.IngredientListActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -47,7 +50,8 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         return mIngredients.size();
     }
 
-    public class IngredientsViewHolder extends RecyclerView.ViewHolder {
+
+    public class IngredientsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @Bind(R.id.ingredientTextView) TextView mIngredient;
 
         private Context mContext;
@@ -56,10 +60,25 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindIngredient(String ingredient) {
             mIngredient.setText(ingredient);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(mContext.getClass().getSimpleName().equals("IngredientListActivity")){
+                if(Integer.toString(mIngredient.getCurrentTextColor()).equals("-26624")){
+                    mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.primary_dark));
+                    IngredientListActivity.removeIngredient(mIngredient.getText().toString());
+                }else{
+                    mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.accent));
+                    IngredientListActivity.addIngredient(mIngredient.getText().toString());
+                }
+
+            }
         }
     }
 }

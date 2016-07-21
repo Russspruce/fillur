@@ -32,6 +32,7 @@ public class SearchActivity extends AppCompatActivity {
     public final String TAG = this.getClass().getSimpleName();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
