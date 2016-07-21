@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentRestaurantList"
-        android:name="com.epicodus.guest.fillur.ui.SavedRecipeFragment"
+        android:name="com.epicodus.guest.fillur.ui.SavedRecipe.SavedRecipeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_search" />

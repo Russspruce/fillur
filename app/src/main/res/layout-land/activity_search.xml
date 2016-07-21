@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/fragmentItemsList"
-        android:name="com.epicodus.guest.fillur.ui.SearchFragment"
+        android:name="com.epicodus.guest.fillur.ui.Search.SearchFragment"
         android:layout_height="match_parent"
         android:layout_width="0dp"
         android:layout_weight="3"

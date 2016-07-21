@@ -32,7 +32,7 @@ public class IngredientListActivity extends AppCompatActivity implements View.On
     private ArrayList<String> mIngredients = new ArrayList<>();
     private ChildEventListener mChildEventListener;
     private IngredientsAdapter mAdapter;
-    private static ArrayList<String> myIngredients = new ArrayList<>();
+    public static ArrayList<String> myIngredients = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +85,7 @@ public class IngredientListActivity extends AppCompatActivity implements View.On
     }
     public static void addIngredient(String ingredient){
         myIngredients.add(ingredient);
+        Log.d("addIngredient: ", myIngredients.toString());
     }
 
     public static void removeIngredient(String ingredient){

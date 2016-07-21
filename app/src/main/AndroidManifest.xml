@@ -11,11 +11,11 @@
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme" />
-        <activity android:name=".ui.SearchActivity" />
-        <activity android:name=".ui.RecipeDetailActivity" />
-        <activity android:name=".ui.SavedRecipeActivity" />
-        <activity android:name=".ui.CreateAccountActivity" />
-        <activity android:name=".ui.LoginActivity">
+        <activity android:name=".ui.Search.SearchActivity" />
+        <activity android:name=".ui.RecipeDetail.RecipeDetailActivity" />
+        <activity android:name=".ui.SavedRecipe.SavedRecipeActivity" />
+        <activity android:name=".ui.Login.CreateAccountActivity" />
+        <activity android:name=".ui.Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

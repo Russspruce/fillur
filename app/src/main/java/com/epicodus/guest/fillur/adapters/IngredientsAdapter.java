@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.epicodus.guest.fillur.Constants;
 import com.epicodus.guest.fillur.R;
 import com.epicodus.guest.fillur.models.Recipe;
 import com.epicodus.guest.fillur.ui.IngredientListActivity;
@@ -55,11 +56,13 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         @Bind(R.id.ingredientTextView) TextView mIngredient;
 
         private Context mContext;
+        private ArrayList<String> mIngredientsList;
 
         public IngredientsViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mIngredientsList = new ArrayList<>();
             itemView.setOnClickListener(this);
         }
 
@@ -69,14 +72,15 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
         @Override
         public void onClick(View view) {
-            if(mContext.getClass().getSimpleName().equals("IngredientListActivity")){
-                if(Integer.toString(mIngredient.getCurrentTextColor()).equals("-26624")){
-                    mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.primary_dark));
-                    IngredientListActivity.removeIngredient(mIngredient.getText().toString());
-                }else{
-                    mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.accent));
-                    IngredientListActivity.addIngredient(mIngredient.getText().toString());
-                }
+            if(mContext.getClass().getSimpleName().equals(Constants.INGREDIENT_LIST_ACTIVITY)){
+                    if (IngredientListActivity.myIngredients.indexOf(mIngredient.getText().toString()) != -1) {
+                        mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.primary_dark));
+                        IngredientListActivity.removeIngredient(mIngredient.getText().toString());
+
+                    } else {
+                        mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.accent));
+                        IngredientListActivity.addIngredient(mIngredient.getText().toString());
+                    }
 
             }
         }

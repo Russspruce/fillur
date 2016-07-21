@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SearchActivity">
+    tools:context=".ui.Search.SearchActivity">
 
     <fragment
         android:id="@+id/fragmentRestaurantList"
-        android:name="com.epicodus.guest.fillur.ui.SearchFragment"
+        android:name="com.epicodus.guest.fillur.ui.Search.SearchFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_search" />

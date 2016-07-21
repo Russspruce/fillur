@@ -3,7 +3,6 @@ package com.epicodus.guest.fillur.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Parcel;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -15,9 +14,8 @@ import android.widget.TextView;
 
 import com.epicodus.guest.fillur.R;
 import com.epicodus.guest.fillur.models.Recipe;
-import com.epicodus.guest.fillur.ui.RecipeDetailActivity;
-import com.epicodus.guest.fillur.ui.RecipeDetailFragment;
-import com.google.gson.Gson;
+import com.epicodus.guest.fillur.ui.RecipeDetail.RecipeDetailActivity;
+import com.epicodus.guest.fillur.ui.RecipeDetail.RecipeDetailFragment;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;

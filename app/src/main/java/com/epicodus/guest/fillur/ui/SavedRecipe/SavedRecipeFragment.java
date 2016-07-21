@@ -1,4 +1,4 @@
-package com.epicodus.guest.fillur.ui;
+package com.epicodus.guest.fillur.ui.SavedRecipe;
 
 
 import android.os.Bundle;

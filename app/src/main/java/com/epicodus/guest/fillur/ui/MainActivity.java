@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.epicodus.guest.fillur.R;
+import com.epicodus.guest.fillur.ui.SavedRecipe.SavedRecipeActivity;
+import com.epicodus.guest.fillur.ui.Search.SearchActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

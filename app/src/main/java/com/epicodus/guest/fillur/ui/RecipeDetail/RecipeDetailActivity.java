@@ -1,4 +1,4 @@
-package com.epicodus.guest.fillur.ui;
+package com.epicodus.guest.fillur.ui.RecipeDetail;
 
 import android.content.Intent;
 import android.net.Uri;
