@@ -1,11 +1,14 @@
 
 package com.epicodus.guest.fillur.ui;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.epicodus.guest.fillur.R;
 import com.epicodus.guest.fillur.adapters.RecipeAdapter;
@@ -23,11 +26,13 @@ import okhttp3.Response;
 
 public class RecipeListActivity extends AppCompatActivity {
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.error) TextView mErrorText;
 
     private RecipeAdapter mAdapter;
     public ArrayList<Recipe> mRecipes = new ArrayList<>();
 
     public String mIngredients;
+    private ProgressDialog mAuthProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +42,20 @@ public class RecipeListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mIngredients = getIntent().getStringExtra("ingredients");
+        createAuthProgressDialog();
 
         getRecipes();
     }
 
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading...");
+        mAuthProgressDialog.setMessage("Retrieving Recipes...");
+        mAuthProgressDialog.setCancelable(false);
+    }
+
     private void getRecipes() {
+        mAuthProgressDialog.show();
         final Food2ForkService food2ForkService = new Food2ForkService();
 
         food2ForkService.findRecipes(mIngredients, new Callback() {
@@ -57,11 +71,18 @@ public class RecipeListActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        mAdapter = new RecipeAdapter(RecipeListActivity.this, mRecipes);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(RecipeListActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
+                        mAuthProgressDialog.dismiss();
+                        if(mRecipes.size() == 0){
+                            mErrorText.setVisibility(View.VISIBLE);
+                        }else{
+
+                            mAdapter = new RecipeAdapter(RecipeListActivity.this, mRecipes);
+                            mRecyclerView.setAdapter(mAdapter);
+                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(RecipeListActivity.this);
+                            mRecyclerView.setLayoutManager(layoutManager);
+                            mRecyclerView.setHasFixedSize(true);
+                        }
+
                     }
                 });
 

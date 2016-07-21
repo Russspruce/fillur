@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:nextFocusDown="@+id/passwordEditText"
             android:padding="10dp"
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:nextFocusDown="@+id/passwordEditText"
             android:padding="10dp"
@@ -48,8 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Log in"
-            android:background="@color/accent"
+            android:text="@string/log_in"
+            android:background="@drawable/round_corners"
             android:layout_marginTop="15dp"
             android:textColor="@color/icons" />
 
@@ -60,7 +60,7 @@
             android:textColor="@color/icons"
             android:textStyle="bold"
             android:textSize="15sp"
-            android:text="Don't have an account? Sign up here!"
+            android:text="@string/don_t_have_an_account_sign_up_here"
             android:id="@+id/registerTextView"
             android:layout_gravity="center_horizontal" />
 
@@ -69,9 +69,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@color/primary_light"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:layout_above="@+id/linearLayout"
         android:layout_centerHorizontal="true" />

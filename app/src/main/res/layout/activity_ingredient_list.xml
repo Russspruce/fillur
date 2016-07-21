@@ -17,6 +17,7 @@
         android:id="@+id/search"
         android:layout_alignParentBottom="true"
         android:text="@string/submit"
-        android:background="@color/accent"/>
+        android:background="@color/accent"
+        android:textColor="@color/icons"/>
 
 </RelativeLayout>

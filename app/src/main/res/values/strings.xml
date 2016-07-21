@@ -13,4 +13,17 @@
     <string name="view_directions">View Directions</string>
     <string name="save_recipe">Save Recipe</string>
     <string name="submit">Submit</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_an_account_log_in_here">Already have an account? Log in here!</string>
+    <string name="create_account">Create Account</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="don_t_have_an_account_sign_up_here">Don\'t have an account? Sign up here!</string>
+    <string name="log_in">Log in</string>
+    <string name="login">Login</string>
+    <string name="recipe_error">We were unable to find any recipes</string>
+    <string name="add">Add</string>
+    <string name="add_ingredient">Add Ingredient</string>
 </resources>

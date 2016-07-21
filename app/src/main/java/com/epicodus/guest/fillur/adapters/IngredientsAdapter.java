@@ -50,6 +50,11 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     public int getItemCount() {
         return mIngredients.size();
     }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
 
 
     public class IngredientsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -68,7 +73,14 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
         public void bindIngredient(String ingredient) {
             mIngredient.setText(ingredient);
+            if (IngredientListActivity.myIngredients.indexOf(mIngredient.getText().toString()) == -1) {
+                mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.primary_dark));
+            } else {
+                mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.accent));
+            }
         }
+
+
 
         @Override
         public void onClick(View view) {

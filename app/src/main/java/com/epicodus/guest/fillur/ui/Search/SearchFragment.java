@@ -1,6 +1,7 @@
 package com.epicodus.guest.fillur.ui.Search;
 
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.epicodus.guest.fillur.Constants;
 import com.epicodus.guest.fillur.R;
@@ -39,12 +41,15 @@ import okhttp3.Response;
  */
 public class SearchFragment extends Fragment {
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.error) TextView mErrorText;
 
     private RecipeAdapter mAdapter;
     public ArrayList<Recipe> mRecipes = new ArrayList<>();
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentSearch;
+
+    private ProgressDialog mAuthProgressDialog;
 
     public String mIngredients;
 
@@ -56,9 +61,17 @@ public class SearchFragment extends Fragment {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mEditor = mSharedPreferences.edit();
 
-        setHasOptionsMenu(true);
-    }
+        createAuthProgressDialog();
 
+        setHasOptionsMenu(true);
+
+    }
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(getActivity());
+        mAuthProgressDialog.setTitle("Loading...");
+        mAuthProgressDialog.setMessage("Retrieving Recipes...");
+        mAuthProgressDialog.setCancelable(false);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,6 +89,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void getRecipes(String search) {
+        mAuthProgressDialog.show();
         final Food2ForkService food2ForkService = new Food2ForkService();
 
         food2ForkService.findRecipes(search, new Callback() {
@@ -87,15 +101,22 @@ public class SearchFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) {
                 mRecipes = food2ForkService.processRecipes(response);
+                Log.d("onResponse: " , mRecipes.size()+"");
                 getActivity().runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        mAdapter = new RecipeAdapter(getActivity(), mRecipes);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
+                        mAuthProgressDialog.dismiss();
+                        if(mRecipes.size() == 0){
+                            mErrorText.setVisibility(View.VISIBLE);
+                        }else{
+                            mAdapter = new RecipeAdapter(getActivity(), mRecipes);
+                            mRecyclerView.setAdapter(mAdapter);
+                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                            mRecyclerView.setLayoutManager(layoutManager);
+                            mRecyclerView.setHasFixedSize(true);
+                        }
+
                     }
                 });
 

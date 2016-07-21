@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.epicodus.guest.fillur.R;
+import com.epicodus.guest.fillur.ui.Login.LoginActivity;
 import com.epicodus.guest.fillur.ui.SavedRecipe.SavedRecipeActivity;
 import com.epicodus.guest.fillur.ui.Search.SearchActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.search) Button mSearch;
     @Bind(R.id.select) Button mSelect;
     @Bind(R.id.save) Button mSave;
+    @Bind(R.id.logout) Button mLogout;
 
 
     @Override
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSearch.setOnClickListener(this);
         mSave.setOnClickListener(this);
         mSelect.setOnClickListener(this);
+        mLogout.setOnClickListener(this);
 
     }
 
@@ -53,6 +57,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v == mSelect) {
             Intent intent = new Intent(MainActivity.this, IngredientListActivity.class);
             startActivity(intent);
+        }
+        if (v == mLogout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
     }
 }
