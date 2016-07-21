@@ -19,6 +19,8 @@ public class Recipe {
     public String sourceUrl;
     public String rank;
     public ArrayList<String> ingredients;
+    String index;
+    private String pushId;
 
     public Recipe() {}
 
@@ -64,6 +66,21 @@ public class Recipe {
 
     public String getSourceUrl() {
         return sourceUrl;
+    }
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public String getPushId(){
+        return pushId;
+    }
+
+    public void setPushId(String pushId){
+        this.pushId = pushId;
     }
 
 }

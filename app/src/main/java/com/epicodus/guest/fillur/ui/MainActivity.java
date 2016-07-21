@@ -14,6 +14,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    public final String TAG = this.getClass().getSimpleName();
     @Bind(R.id.title) TextView mTitle;
     @Bind(R.id.search) Button mSearch;
     @Bind(R.id.select) Button mSelect;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTitle.setTypeface(calligraffitiFont);
 
         mSearch.setOnClickListener(this);
+        mSave.setOnClickListener(this);
 
     }
 
@@ -39,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v == mSearch){
             Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(intent);
+        }
+        if (v == mSave) {
+            Intent intent = new Intent(MainActivity.this, SavedRecipeActivity.class);
             startActivity(intent);
         }
     }

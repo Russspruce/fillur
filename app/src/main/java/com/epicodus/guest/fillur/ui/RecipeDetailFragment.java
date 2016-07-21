@@ -1,7 +1,11 @@
 package com.epicodus.guest.fillur.ui;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,17 +15,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.epicodus.guest.fillur.Constants;
 import com.epicodus.guest.fillur.R;
 import com.epicodus.guest.fillur.adapters.IngredientsAdapter;
 import com.epicodus.guest.fillur.models.Recipe;
+import com.epicodus.guest.fillur.models.User;
 import com.epicodus.guest.fillur.services.Food2ForkService;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,7 +42,7 @@ import okhttp3.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecipeDetailFragment extends Fragment {
+public class RecipeDetailFragment extends Fragment implements View.OnClickListener{
     @Bind(R.id.recipeImageView2) ImageView mImageLabel;
     @Bind(R.id.recipeTitleTextView2) TextView mTitleLabel;
     @Bind(R.id.publisherTextView2) TextView mPublisherLabel;
@@ -42,16 +52,20 @@ public class RecipeDetailFragment extends Fragment {
     @Bind(R.id.recyclerView2) RecyclerView mRecyclerView;
     private static final int MAX_WIDTH = 400;
     private static final int MAX_HEIGHT = 300;
-
+    private int mPosition;
     private Recipe mRecipe;
+    private User mCurrentUser;
+    private ArrayList<Recipe> mRecipes;
     private String mId;
     private IngredientsAdapter mAdapter;
+    private SharedPreferences mSharedPreferences;
 
 
-    public static RecipeDetailFragment newInstance(Recipe recipe) {
+    public static RecipeDetailFragment newInstance(ArrayList<Recipe> recipes, Integer position) {
         RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("recipe", Parcels.wrap(recipe));
+        args.putParcelable(Constants.EXTRA_KEY_RECIPES, Parcels.wrap(recipes));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
         recipeDetailFragment.setArguments(args);
         return recipeDetailFragment;
     }
@@ -60,7 +74,13 @@ public class RecipeDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mRecipe = Parcels.unwrap(getArguments().getParcelable("recipe"));
+        mRecipes = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_RECIPES));
+        mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+        mRecipe = mRecipes.get(mPosition);
+        Gson gson = new Gson();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String json = mSharedPreferences.getString("currentUser", null);
+        mCurrentUser = gson.fromJson(json, User.class);
     }
 
 
@@ -68,6 +88,10 @@ public class RecipeDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
         ButterKnife.bind(this, view);
+
+        mWebsiteLabel.setOnClickListener(this);
+        mSaveRecipeButton.setOnClickListener(this);
+
 
         getRecipe();
 
@@ -109,4 +133,26 @@ public class RecipeDetailFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v == mSaveRecipeButton){
+            String uid = mCurrentUser.getId();
+
+            DatabaseReference restaurantRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_RECIPES)
+                    .child(uid);
+
+            DatabaseReference pushRef = restaurantRef.push();
+            String pushId = pushRef.getKey();
+            mRecipe.setPushId(pushId);
+            pushRef.setValue(mRecipe);
+
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
+        if(v == mWebsiteLabel){
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRecipe.getSourceUrl()));
+            startActivity(webIntent);
+              }
+        }
 }
