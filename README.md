@@ -8,7 +8,7 @@ An android app that uses the Food2Fork API to look up different recipes dependin
 
 ## Installation
 
-* git clone [this repository](https://github.com/Russspruce/epicodus_android_project.git).
+* git clone [this repository](https://github.com/Russspruce/fillur.git).
 * Open Android Studios
 * Select 'Open Existing Project'
 * Select 'fillur'
