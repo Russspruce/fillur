@@ -1,7 +1,9 @@
 package com.epicodus.guest.fillur.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.renderscript.ScriptGroup;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epicodus.guest.fillur.Constants;
@@ -23,6 +26,7 @@ import com.epicodus.guest.fillur.R;
 import com.epicodus.guest.fillur.adapters.IngredientsAdapter;
 import com.epicodus.guest.fillur.models.Recipe;
 import com.epicodus.guest.fillur.models.User;
+import com.epicodus.guest.fillur.ui.Search.SearchFragment;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

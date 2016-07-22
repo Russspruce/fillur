@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.epicodus.guest.fillur.adapters.IngredientsAdapter;
 import com.epicodus.guest.fillur.models.Recipe;
 import com.epicodus.guest.fillur.models.User;
 import com.epicodus.guest.fillur.services.Food2ForkService;
+import com.epicodus.guest.fillur.ui.Search.SearchFragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
